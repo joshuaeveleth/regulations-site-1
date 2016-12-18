@@ -1,30 +1,30 @@
 // this is a browserify friendly version of https://github.com/ssorallen/jquery-scrollstop
 
 
-var $ = require('jquery');
+const $ = require('jquery');
 
-var dispatch = $.event.dispatch || $.event.handle;
+const dispatch = $.event.dispatch || $.event.handle;
 
-var special = $.event.special;
-var uid1 = 'D' + (+new Date());
-var uid2 = 'D' + (+new Date() + 1);
+const special = $.event.special;
+const uid1 = 'D' + (+new Date());
+const uid2 = 'D' + (+new Date() + 1);
 
 special.scrollstart = {
   setup: function setup(initialData) {
-    var data = $.extend({
+    const data = $.extend({
       latency: special.scrollstop.latency,
     }, initialData);
 
-    var timer;
-    var handler = function handler(evt) {
-      var self = this;
-      var args = arguments;
+    let timer;
+    const handler = function handler(evt) {
+      const self = this;
+      const args = arguments;
 
       if (timer) {
         clearTimeout(timer);
       } else {
-        var modifiedEvent = $.extend({}, evt, { type: 'scrollstart' });
-        var modifiedArgs = [modifiedEvent].concat(args.slice(1));
+        const modifiedEvent = $.extend({}, evt, { type: 'scrollstart' });
+        const modifiedArgs = [modifiedEvent].concat(args.slice(1));
         dispatch.apply(self, modifiedArgs);
       }
 
@@ -43,22 +43,22 @@ special.scrollstart = {
 special.scrollstop = {
   latency: 250,
   setup: function setup(initialData) {
-    var data = $.extend({
+    const data = $.extend({
       latency: special.scrollstop.latency,
     }, initialData);
 
-    var timer;
-    var handler = function handler(evt) {
-      var self = this;
-      var args = arguments;
+    let timer;
+    const handler = function handler(evt) {
+      const self = this;
+      const args = arguments;
 
       if (timer) {
         clearTimeout(timer);
       }
 
       timer = setTimeout(function timedOut() {
-        var modifiedEvent = $.extend({}, evt, { type: 'scrollstart' });
-        var modifiedArgs = [modifiedEvent].concat(args.slice(1));
+        const modifiedEvent = $.extend({}, evt, { type: 'scrollstart' });
+        const modifiedArgs = [modifiedEvent].concat(args.slice(1));
         timer = null;
         dispatch.apply(self, modifiedArgs);
       }, data.latency);
