@@ -11,27 +11,27 @@ var special = $.event.special,
   uid2 = 'D' + (+new Date() + 1);
 
 special.scrollstart = {
-  setup: function setup(data) {
-    var _data = $.extend({
+  setup: function setup(initialData) {
+    var data = $.extend({
       latency: special.scrollstop.latency,
-    }, data);
+    }, initialData);
 
     var timer,
       handler = function handler(evt) {
-        var _self = this,
-          _args = arguments;
+        var self = this;
+        var args = arguments;
 
         if (timer) {
           clearTimeout(timer);
         } else {
           var modifiedEvent = $.extend({}, evt, {type: 'scrollstart'});
-          var modifiedArgs = [modifiedEvent].concat(arguments.slice(1));
-          dispatch.apply(_self, modifiedArgs);
+          var modifiedArgs = [modifiedEvent].concat(args.slice(1));
+          dispatch.apply(self, modifiedArgs);
         }
 
         timer = setTimeout(function timedOut() {
           timer = null;
-        }, _data.latency);
+        }, data.latency);
       };
 
     $(this).bind('scroll', handler).data(uid1, handler);
@@ -43,15 +43,15 @@ special.scrollstart = {
 
 special.scrollstop = {
   latency: 250,
-  setup: function setup(data) {
-    var _data = $.extend({
+  setup: function setup(initialData) {
+    var data = $.extend({
       latency: special.scrollstop.latency,
-    }, data);
+    }, initialData);
 
     var timer,
       handler = function handler(evt) {
-        var _self = this,
-          _args = arguments;
+        var self = this;
+        var args = arguments;
 
         if (timer) {
           clearTimeout(timer);
@@ -59,10 +59,10 @@ special.scrollstop = {
 
         timer = setTimeout(function timedOut() {
           var modifiedEvent = $.extend({}, evt, {type: 'scrollstart'});
-          var modifiedArgs = [modifiedEvent].concat(arguments.slice(1));
+          var modifiedArgs = [modifiedEvent].concat(args.slice(1));
           timer = null;
-          dispatch.apply(_self, modifiedArgs);
-        }, _data.latency);
+          dispatch.apply(self, modifiedArgs);
+        }, data.latency);
       };
 
     $(this).bind('scroll', handler).data(uid2, handler);
