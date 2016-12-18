@@ -277,10 +277,10 @@ const MainView = Backbone.View.extend({
     const oldLabel = $old.data('label');
     const $error = this.$el
           .prepend(
-            '<div class="error error-network">' +
-              '<span class="cf-icon cf-icon-error icon-warning"></span>' +
-              message +
-            '</div>',
+            `${'<div class="error error-network">' +
+              '<span class="cf-icon cf-icon-error icon-warning"></span>'}${
+              message
+            }</div>`,
           )
           .hide()
           .fadeIn('slow');
@@ -318,8 +318,8 @@ const MainView = Backbone.View.extend({
           class: 'clipboard-link',
           text: 'Copy this text to your clipboard',
           title: 'Copy this text to your clipboard',
-          id: '#copyable-' + index,
-          href: '#copyable-' + index,
+          id: `#copyable-${index}`,
+          href: `#copyable-${index}`,
         });
         // Can we avoid `new` here?
         /* eslint-disable no-new */
