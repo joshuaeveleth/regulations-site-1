@@ -34,7 +34,8 @@ module.exports = {
     }
     return $expander;
   },
-  full: function full($li, $expander) {
+  full: function full($li, givenExpander) {
+    var $expander = givenExpander;
     var $toShow;
     /* Generally, we want to reuse the existing expander */
     if ($expander) {

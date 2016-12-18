@@ -125,7 +125,8 @@ var PreambleView = ChildView.extend({
     }
   },
 
-  write: function write(section, tocId, indexes, label, $parent) {
+  write: function write(section, tocId, indexes, label, givenParent) {
+    var $parent = givenParent;
     this.mode = 'write';
     this.checkCanWrite();
 

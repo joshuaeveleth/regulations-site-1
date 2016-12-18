@@ -11,7 +11,7 @@ var markerlessRE = /p\d+/;
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf
 // TODO this may make sense to move elsewhere
 if (!Array.prototype.indexOf) {
-  /* eslint-disable no-extend-native,no-bitwise */
+  /* eslint-disable no-extend-native,no-bitwise,no-param-reassign */
   Array.prototype.indexOf = function indexOf(searchElement, fromIndex) {
     if ( this === undefined || this === null ) {
       throw new TypeError( '"this" is null or not defined' );
@@ -109,10 +109,10 @@ module.exports = {
                     // the comparison version in diff mode
   },
 
-    // returns newer version. findVersion will return base version
-  findDiffVersion: function findDiffVersion(versionElements, currentVersion) {
+  // returns newer version. findVersion will return base version
+  findDiffVersion: function findDiffVersion(versionElements, current) {
     var version;
-    currentVersion = currentVersion || this.findVersion(versionElements);
+    var currentVersion = current || this.findVersion(versionElements);
     version = $(versionElements.diffToc).attr('data-from-version');
     if (!version || version === currentVersion) {
       if ($(versionElements.timelineList).find('.version-link').attr('data-version') !== currentVersion) {
@@ -227,13 +227,14 @@ module.exports = {
      *
      * @see unittests
      */
-  parsePreambleCitationId: function parsePreambleCitationId(hash, type) {
+  parsePreambleCitationId: function parsePreambleCitationId(hash, originalType) {
       // only grab the section info after #
     var section = hash.substring(hash.indexOf('#') + 1);
     var parts = section.split('-');
     var docId = parts.shift();
+    var type;
 
-    if (type === 'preamble-section') {
+    if (originalType === 'preamble-section') {
       type = 'preamble';
     } else {
       type = 'cfr';

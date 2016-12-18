@@ -24,8 +24,9 @@ var HistoryView = Backbone.View.extend({
     sessionStorage.setItem('drawerDefault', 'timeline');
   },
 
-  updateLinks: function updateLinks(section) {
+  updateLinks: function updateLinks(givenSection) {
     var prefix = window.APP_PREFIX;
+    var section = givenSection;
     if (typeof prefix !== 'undefined' && prefix.substr(prefix.length - 1) !== '/') {
       prefix = prefix + '/';
     }
