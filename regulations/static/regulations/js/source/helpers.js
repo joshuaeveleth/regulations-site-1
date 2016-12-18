@@ -42,10 +42,10 @@ if (!Array.prototype.indexOf) {
 }
 
 module.exports = {
-    // Finds parent-most reg paragraph
+  // Finds parent-most reg paragraph
   findBaseSection: function findBaseSection(id) {
-    var parts,
-      interpIndex;
+    var parts;
+    var interpIndex;
 
     if (id.indexOf('-') !== -1) {
       parts = id.split('-');
@@ -157,9 +157,9 @@ module.exports = {
   },
 
   formatSubpartLabel: function formatSubpartLabel(id) {
-        // accepts 123-Subpart-C
-    var parts = id.split('-'),
-      label = 'Subpart ';
+    // accepts 123-Subpart-C
+    var parts = id.split('-');
+    var label = 'Subpart ';
     if (isNaN(parts[0]) === false && parts[1] === 'Subpart') {
       label += parts[2];
     }
