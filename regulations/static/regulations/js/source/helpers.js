@@ -197,10 +197,10 @@ module.exports = {
       section = parts.slice(0, 2);
     }
     const parsed = {
-      path: path,
-      type: type,
-      docId: docId,
-      section: section,
+      path,
+      type,
+      docId,
+      section,
     };
       /**
        * If linking to the top-level, we don't need a hash. Otherwise, link to
