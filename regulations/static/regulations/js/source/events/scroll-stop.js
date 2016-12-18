@@ -28,7 +28,7 @@ special.scrollstart = {
         dispatch.apply(self, modifiedArgs);
       }
 
-      timer = setTimeout(function timedOut() {
+      timer = setTimeout(() => {
         timer = null;
       }, data.latency);
     };
@@ -56,7 +56,7 @@ special.scrollstop = {
         clearTimeout(timer);
       }
 
-      timer = setTimeout(function timedOut() {
+      timer = setTimeout(() => {
         const modifiedEvent = $.extend({}, evt, { type: 'scrollstart' });
         const modifiedArgs = [modifiedEvent].concat(args.slice(1));
         timer = null;
