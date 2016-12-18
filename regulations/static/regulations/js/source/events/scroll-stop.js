@@ -24,7 +24,7 @@ special.scrollstart = {
         if (timer) {
           clearTimeout(timer);
         } else {
-          var modifiedEvent = $.extend({}, evt, {type: 'scrollstart'});
+          var modifiedEvent = $.extend({}, evt, { type: 'scrollstart' });
           var modifiedArgs = [modifiedEvent].concat(args.slice(1));
           dispatch.apply(self, modifiedArgs);
         }
@@ -58,7 +58,7 @@ special.scrollstop = {
         }
 
         timer = setTimeout(function timedOut() {
-          var modifiedEvent = $.extend({}, evt, {type: 'scrollstart'});
+          var modifiedEvent = $.extend({}, evt, { type: 'scrollstart' });
           var modifiedArgs = [modifiedEvent].concat(args.slice(1));
           timer = null;
           dispatch.apply(self, modifiedArgs);
