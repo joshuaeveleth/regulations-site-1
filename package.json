@@ -26,7 +26,7 @@
     }
   ],
   "engines": {
-    "node": "4.4.0"
+    "node": "6.9.2"
   },
   "devDependencies": {
     "babelify": "^7.3.0",
